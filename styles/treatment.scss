@@ -1,0 +1,12 @@
+@use "./partial/global";
+@use "./partial/mixin";
+@use "./partial/variables";
+
+.body {
+  background-color: variables.$d-blue;
+}
+.backBtn {
+  @include mixin.backBtn;
+  @include mixin.mobil-subheader;
+  color: variables.$white;
+}

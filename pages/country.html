@@ -5,7 +5,27 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="../styles/country.css" />
-    <title>By Country</title>
+    <title>Cases</title>
   </head>
-  <body></body>
+  <body>
+    <main class="main">
+      <a class="backBtn" href="../index.html">&lt BACK</a>
+      <div class="container">
+        <h1 class="container-title">Case Summary</h1>
+        <section class="global"></section>
+        <form class="form">
+          <input
+            class="form-entry"
+            type="text"
+            name="country"
+            placeholder="country name"
+          />
+          <button class="form-btn" type="submit">🔍</button>
+        </form>
+        <section class="country"></section>
+      </div>
+    </main>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="../country.js"></script>
+  </body>
 </html>

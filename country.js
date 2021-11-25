@@ -1,3 +1,4 @@
+/************* get data **************/
 const allCountries = {
   method: "GET",
   url: "https://vaccovid-coronavirus-vaccine-and-treatment-tracker.p.rapidapi.com/api/npm-covid-data/",
@@ -8,15 +9,136 @@ const allCountries = {
   },
 };
 
+let global;
+let countryList;
 axios
   .request(allCountries)
   .then(function (response) {
-    console.log(response.data);
-    const countryCaseList = response.data;
-    displayCountryCase(countryCaseList);
+    countryList = response.data.slice(2);
+    console.log(countryList);
+    global = response.data[0];
+    console.log(global);
+    displayGlobal(global);
+    formSearch(countryList);
   })
   .catch(function (error) {
     console.error(error);
   });
 
-function displayCountryCase(arr) {}
+// console.log(countryList);
+
+/*********** display global data  ****************/
+//practice class
+class CountryC {
+  constructor(
+    country,
+    active,
+    rate,
+    newCases,
+    newDeaths,
+    newRecovered,
+    totalCases,
+    totalDeaths,
+    totalRecovered
+  ) {
+    this.country = country;
+    this.active = active;
+    this.rate = rate;
+    this.newCases = newCases;
+    this.newDeaths = newDeaths;
+    this.newRecovered = newRecovered;
+    this.totalCases = totalCases;
+    this.totalDeaths = totalDeaths;
+    this.totalRecovered = totalRecovered;
+  }
+  render() {
+    return `
+     <div class="summaryCard">
+          <p class="summaryCard-headline">${this.country}</p>
+          <p class="summaryCard-info">Active: <span class="summaryCard-mun">${this.active}</span></p>
+          <p class="summaryCard-info">Case Fatality Rate: <span class="summaryCard-mun">${this.rate}</span></p>
+          <p class="summaryCard-info">New Cases:<span class="summaryCard-mun">${this.newCases}</span></p>
+          <p class="summaryCard-info">New Deaths:<span class="summaryCard-mun">${this.newDeaths}</span></p>
+          <p class="summaryCard-info">New Recovered:<span class="summaryCard-mun">${this.newRecovered}</span></p>
+          <p class="summaryCard-info">Total Cases:<span class="summaryCard-mun">${this.totalCases}</span></p>
+          <p class="summaryCard-info">Total Deaths:<span class="summaryCard-mun">${this.totalDeaths}</span></p>
+          <p class="summaryCard-info">Total Recovered:<span class="summaryCard-mun">${this.totalRecovered}</span></p>
+        </div>
+    `;
+  }
+}
+
+function displayGlobal(obj) {
+  const {
+    Country,
+    ActiveCases,
+    Case_Fatality_Rate,
+    NewCases,
+    NewDeaths,
+    NewRecovered,
+    TotalCases,
+    TotalDeaths,
+    TotalRecovered,
+  } = obj;
+  let worldData = new CountryC(
+    Country,
+    ActiveCases,
+    Case_Fatality_Rate,
+    NewCases,
+    NewDeaths,
+    NewRecovered,
+    TotalCases,
+    TotalDeaths,
+    TotalRecovered
+  );
+  const overview = document.querySelector(".global");
+  overview.innerHTML = worldData.render();
+}
+
+/************ search by country **************/
+function formSearch(arr) {
+  const form = document.querySelector(".form");
+  let searchTarget;
+  let targetCountry;
+
+  form.addEventListener("submit", (e) => {
+    e.preventDefault();
+    searchTarget = e.target.country.value;
+    console.log(searchTarget);
+    targetCountry = arr.find(
+      (item) => item.Country.toLowerCase() === searchTarget.toLowerCase()
+    );
+    e.target.reset();
+    if (targetCountry) {
+      console.log(targetCountry);
+      displayCountry(targetCountry);
+    }
+  });
+}
+
+function displayCountry(obj) {
+  const {
+    Country,
+    ActiveCases,
+    Case_Fatality_Rate,
+    NewCases,
+    NewDeaths,
+    NewRecovered,
+    TotalCases,
+    TotalDeaths,
+    TotalRecovered,
+  } = obj;
+  let countryData = new CountryC(
+    Country,
+    ActiveCases,
+    Case_Fatality_Rate,
+    NewCases,
+    NewDeaths,
+    NewRecovered,
+    TotalCases,
+    TotalDeaths,
+    TotalRecovered
+  );
+  const countryView = document.querySelector(".country");
+  countryView.innerHTML = countryData.render();
+}

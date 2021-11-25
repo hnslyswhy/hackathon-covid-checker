@@ -1,0 +1,79 @@
+@use "./partial/global";
+@use "./partial/mixin";
+@use "./partial/variables";
+
+.main {
+  width: 100%;
+  height: 100vh;
+  overflow: scroll;
+  background-color: variables.$d-blue;
+  padding: variables.$pm-base * 4 0;
+}
+
+.backBtn {
+  @include mixin.backBtn;
+  @include mixin.mobil-subheader;
+  color: variables.$white;
+  margin-top: variables.$pm-base * 6; //// ? not working
+}
+
+.container {
+  width: 100%;
+  @include mixin.flexbox(column, center, center);
+
+  &-title {
+    @include mixin.mobil-header;
+    color: variables.$white;
+    margin-top: variables.$pm-base * 4;
+  }
+}
+
+.global,
+.country {
+  width: 100%;
+}
+
+.summaryCard {
+  @include mixin.card;
+  @include mixin.mobil-text;
+  color: variables.$d-gray;
+  padding-top: variables.$pm-base * 4;
+
+  &-headline {
+    @include mixin.mobil-subheader;
+    text-align: center;
+  }
+  &-info {
+    padding: variables.$pm-base variables.$pm-base * 4;
+    &:nth-of-type(2n) {
+      background-color: variables.$l-gray;
+    }
+  }
+  &-mun {
+    padding-left: variables.$pm-base;
+    font-weight: 500;
+  }
+}
+
+.form {
+  width: 80%;
+
+  &-entry {
+    padding: variables.$pm-base * 2 variables.$pm-base * 10;
+    border-radius: 4px;
+    border-color: transparent;
+    background-color: variables.$d-blue;
+    border-bottom: variables.$white 1px solid;
+    &::placeholder {
+      color: variables.$white;
+      @include mixin.mobil-text;
+      text-align: center;
+    }
+  }
+
+  &-btn {
+    background-color: variables.$d-blue;
+    border: none;
+    font-size: 1.25rem;
+  }
+}

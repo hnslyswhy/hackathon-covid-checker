@@ -125,9 +125,6 @@ body {
   border-radius: 4px;
   opacity: 0.9;
   box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
-}
-.news-collection:hover, .news-collection:active {
-  cursor: pointer;
   opacity: 1;
 }
 .news-card {
@@ -135,14 +132,21 @@ body {
   flex-direction: row;
   justify-content: flex-start;
   align-items: center;
-  margin: 0.5rem;
-  padding: 0.5rem;
+  padding: 1rem;
   border-bottom: 1px solid #e7e3d4;
   font-family: "Roboto", serif;
   font-weight: 400;
   line-height: 1.2rem;
   font-size: 0.813rem;
   color: #8590aa;
+}
+.news-card:hover, .news-card:active {
+  cursor: pointer;
+  background-color: #c4dbf6;
+}
+.news-icon {
+  font-size: 1.25rem;
+  margin-right: 0.5rem;
 }
 /* <a class="news-card" href="">
   <div>

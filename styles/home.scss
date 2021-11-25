@@ -27,6 +27,11 @@
   &-container {
     @include mixin.card;
     position: relative;
+    &:hover,
+    &:active {
+      cursor: pointer;
+      opacity: 1;
+    }
 
     &__country {
       background-image: url("../assets/images/covid.jpg");
@@ -59,18 +64,26 @@
 
   &-collection {
     @include mixin.card;
+    opacity: 1;
   }
 
   &-card {
     @include mixin.flexbox(row, flex-start, center);
-    margin: variables.$pm-base * 2;
-    padding: variables.$pm-base * 2;
+    padding: variables.$pm-base * 4;
+    // margin: 0 variables.$pm-base * 2;
     border-bottom: 1px solid variables.$l-gray;
     @include mixin.mobil-text;
     color: variables.$d-gray;
+    &:hover,
+    &:active {
+      cursor: pointer;
+      background-color: variables.$l-blue;
+    }
   }
 
   &-icon {
+    font-size: 1.25rem;
+    margin-right: variables.$pm-base * 2;
   }
 
   &-title {
