@@ -1,0 +1,153 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  text-decoration: none;
+}
+
+body {
+  width: 100%;
+}
+
+@font-face {
+  font-family: "Roboto";
+  src: url("../../assets/fonts/Roboto-Black.woff") format("woff");
+  font-weight: 900;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Roboto";
+  src: url("../../assets/fonts/Roboto-Bold.woff") format("woff");
+  font-weight: 700;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Roboto";
+  src: url("../../assets/fonts/Roboto-Regular.woff") format("woff");
+  font-weight: 400;
+  font-style: normal;
+}
+.main {
+  width: 100%;
+  background-color: #3b8beb;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.main-headline {
+  font-family: "Roboto", serif;
+  font-weight: 700;
+  line-height: 2rem;
+  font-size: 1.5rem;
+  letter-spacing: 0.05rem;
+  color: #f7f9fb;
+  margin-top: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+.main-content {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.card {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.card-container {
+  background-color: #f7f9fb;
+  width: 90%;
+  height: 60%;
+  min-height: 220px;
+  margin: 1rem auto;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  border-radius: 4px;
+  opacity: 0.9;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+  position: relative;
+}
+.card-container:hover, .card-container:active {
+  cursor: pointer;
+  opacity: 1;
+}
+.card-container__country {
+  background-image: url("../assets/images/covid.jpg");
+}
+.card-container__treatment {
+  background-image: url("../assets/images/treatment.jpg");
+}
+.card-title {
+  font-family: "Roboto", serif;
+  font-weight: 600;
+  line-height: 1.375rem;
+  font-size: 0.875rem;
+  letter-spacing: 0.01rem;
+  color: #3b8beb;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  padding: 0.5rem;
+}
+
+.news {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.news-headline {
+  font-family: "Roboto", serif;
+  font-weight: 700;
+  line-height: 2rem;
+  font-size: 1.5rem;
+  letter-spacing: 0.05rem;
+  color: #f7f9fb;
+  margin-top: 1rem;
+}
+.news-collection {
+  background-color: #f7f9fb;
+  width: 90%;
+  height: 60%;
+  min-height: 220px;
+  margin: 1rem auto;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  border-radius: 4px;
+  opacity: 0.9;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+}
+.news-collection:hover, .news-collection:active {
+  cursor: pointer;
+  opacity: 1;
+}
+.news-card {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  margin: 0.5rem;
+  padding: 0.5rem;
+  border-bottom: 1px solid #e7e3d4;
+  font-family: "Roboto", serif;
+  font-weight: 400;
+  line-height: 1.2rem;
+  font-size: 0.813rem;
+  color: #8590aa;
+}
+/* <a class="news-card" href="">
+  <div>
+    <img src="${news.urlToImage}" alt="" />
+  </div>
+  <h3 class="news-title">${news.title}</h3>
+  <p class="news-date">${news.date}</p>
+</a>; *//*# sourceMappingURL=home.css.map */

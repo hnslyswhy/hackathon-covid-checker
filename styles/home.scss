@@ -1,0 +1,86 @@
+@use "./partial/global";
+@use "./partial/mixin";
+@use "./partial/variables";
+
+.main {
+  width: 100%;
+  background-color: variables.$d-blue;
+  @include mixin.flexbox(column, center, center);
+
+  &-headline {
+    @include mixin.mobil-header;
+    color: variables.$white;
+    margin-top: variables.$pm-base * 6;
+    margin-bottom: variables.$pm-base * 2;
+  }
+
+  &-content {
+    width: 100%;
+    @include mixin.flexbox(column, center, center);
+  }
+}
+
+.card {
+  width: 100%;
+  @include mixin.flexbox(column, center, center);
+
+  &-container {
+    @include mixin.card;
+    position: relative;
+
+    &__country {
+      background-image: url("../assets/images/covid.jpg");
+    }
+
+    &__treatment {
+      background-image: url("../assets/images/treatment.jpg");
+    }
+  }
+
+  &-title {
+    @include mixin.mobil-subheader;
+    color: variables.$d-blue;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    padding: variables.$pm-base * 2;
+  }
+}
+
+.news {
+  width: 100%;
+  @include mixin.flexbox(column, center, center);
+
+  &-headline {
+    @include mixin.mobil-header;
+    color: variables.$white;
+    margin-top: variables.$pm-base * 4;
+  }
+
+  &-collection {
+    @include mixin.card;
+  }
+
+  &-card {
+    @include mixin.flexbox(row, flex-start, center);
+    margin: variables.$pm-base * 2;
+    padding: variables.$pm-base * 2;
+    border-bottom: 1px solid variables.$l-gray;
+    @include mixin.mobil-text;
+    color: variables.$d-gray;
+  }
+
+  &-icon {
+  }
+
+  &-title {
+  }
+}
+
+/* <a class="news-card" href="">
+  <div>
+    <img src="${news.urlToImage}" alt="" />
+  </div>
+  <h3 class="news-title">${news.title}</h3>
+  <p class="news-date">${news.date}</p>
+</a>; */
