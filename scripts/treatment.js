@@ -11,7 +11,12 @@ const allTreatment = {
 axios
   .request(allTreatment)
   .then(function (response) {
-    //   console.log(response.data);
+    vaccineList = response.data;
+    console.log(vaccineList);
+  })
+  .then(() => {
+    let approvedVaccineList = findFDAApproved(vaccineList);
+    console.log(approvedVaccineList);
   })
   .catch(function (error) {
     console.error(error);
@@ -27,11 +32,23 @@ const allVaccines = {
   },
 };
 
+let vaccineList;
 axios
   .request(allVaccines)
   .then(function (response) {
     //  console.log(response.data);
+    vaccineList = response.data;
+    console.log(vaccineList);
   })
+  .then(() => {
+    let approvedVaccineList = findFDAApproved(vaccineList);
+    // console.log(approvedVaccineList);
+  })
+
   .catch(function (error) {
     console.error(error);
   });
+
+function findFDAApproved(arr) {
+  return arr.filter((item) => item.FDAApproved !== "undefined");
+}

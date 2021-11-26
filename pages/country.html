@@ -4,14 +4,27 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+      integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+      crossorigin=""
+    />
+    <script
+      src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+      integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+      crossorigin=""
+    ></script>
     <link rel="stylesheet" href="../styles/country.css" />
     <title>Cases</title>
   </head>
+  <!--add a spinner while waiting  show more 1/4 s -->
   <body>
     <main class="main">
       <a class="backBtn" href="../index.html">&lt BACK</a>
       <div class="container">
         <h1 class="container-title">Case Summary</h1>
+        <div class="loadingSpinner"></div>
         <section class="global"></section>
         <form class="form">
           <input
@@ -23,9 +36,11 @@
           <button class="form-btn" type="submit">🔍</button>
         </form>
         <section class="country"></section>
+        <div id="map"></div>
       </div>
     </main>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-    <script src="../country.js"></script>
+    <script src="../scripts/countryLocation.js"></script>
+    <script src="../scripts/country.js"></script>
   </body>
 </html>

@@ -7,10 +7,39 @@
     <link rel="stylesheet" href="../styles/treatment.css" />
     <title>Treatment</title>
   </head>
-  <body class="body">
-    <a class="backBtn" href="../index.html">&lt BACK</a>
-    <main></main>
+  <body>
+    <main class="main">
+      <a class="backBtn" href="../index.html">&lt BACK</a>
+      <div class="container">
+        <section class="intro">
+          <h1 class="intro-title">Health benefits of vaccination</h1>
+          <p class="intro-text">
+            Vaccination is one of the most effective ways to protect our
+            families, communities and ourselves against COVID-19.Evidence
+            indicates that vaccines are very effective at preventing severe
+            illness, hospitalization and death from COVID-19, including against
+            Alpha and Delta variants of concern...<a
+              class="intro-link"
+              href="https://www.canada.ca/en/public-health/services/diseases/coronavirus-disease-covid-19/vaccines/effectiveness-benefits-vaccination.html"
+              >(click here to know more)</a
+            >
+          </p>
+        </section>
+        <div class="loadingSpinner"></div>
+        <section class="global"></section>
+        <form class="form">
+          <input
+            class="form-entry"
+            type="text"
+            name="country"
+            placeholder="country name"
+          />
+          <button class="form-btn" type="submit">🔍</button>
+        </form>
+        <section class="country"></section>
+      </div>
+    </main>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-    <script src="../treatment.js"></script>
+    <script src="../scripts/treatment.js"></script>
   </body>
 </html>

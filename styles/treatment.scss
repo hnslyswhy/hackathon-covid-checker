@@ -2,11 +2,53 @@
 @use "./partial/mixin";
 @use "./partial/variables";
 
-.body {
+.main {
+  width: 100%;
+  height: 100vh;
+  overflow: scroll;
   background-color: variables.$d-blue;
+  padding: variables.$pm-base * 4 0;
 }
+
 .backBtn {
   @include mixin.backBtn;
   @include mixin.mobil-subheader;
   color: variables.$white;
+  margin-top: variables.$pm-base * 6; //// ? not working
+}
+
+.container {
+  width: 100%;
+  @include mixin.flexbox(column, center, center);
+  padding: variables.$pm-base * 4;
+}
+
+.intro {
+  width: 100%;
+  @include mixin.flexbox(column, center, center);
+
+  &-title {
+    @include mixin.mobil-header;
+    color: variables.$white;
+  }
+
+  &-text {
+    @include mixin.mobil-text;
+    color: variables.$white;
+    margin-top: variables.$pm-base * 4;
+  }
+
+  &-link {
+    @include mixin.mobil-text;
+    color: variables.$l-gray;
+    font-style: italic;
+  }
+}
+
+.form {
+  @include mixin.form;
+  @include mixin.flexbox(row, center, center);
+  &::placeholder {
+    @include mixin.mobil-text;
+  }
 }

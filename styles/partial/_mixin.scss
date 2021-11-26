@@ -26,6 +26,48 @@
   }
 }
 
+@mixin loadingSpinner {
+  margin: variables.$pm-base * 8;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  border: 10px dotted variables.$white;
+  border-top-color: variables.$l-blue;
+  border-bottom-color: variables.$l-gray;
+  animation: spinner 5s linear 0.25s infinite;
+}
+
+@keyframes spinner {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@mixin form {
+  width: 80%;
+  &-entry {
+    padding: variables.$pm-base * 2 variables.$pm-base * 10;
+    border-radius: 4px;
+    border-color: transparent;
+    background-color: variables.$d-blue;
+    border-bottom: variables.$white 1px solid;
+    &::placeholder {
+      color: variables.$white;
+      text-align: center;
+    }
+  }
+
+  &-btn {
+    background-color: variables.$d-blue;
+    border: none;
+    font-size: 1.25rem;
+    margin-left: variables.$pm-base;
+  }
+}
+
 //////////////////// flexbox
 @mixin flexbox(
   $direction: row,

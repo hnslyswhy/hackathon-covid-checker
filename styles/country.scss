@@ -33,8 +33,13 @@
   width: 100%;
 }
 
+.loadingSpinner {
+  @include mixin.loadingSpinner;
+}
+
 .summaryCard {
   @include mixin.card;
+  opacity: 1;
   @include mixin.mobil-text;
   color: variables.$d-gray;
   padding-top: variables.$pm-base * 4;
@@ -56,24 +61,15 @@
 }
 
 .form {
-  width: 80%;
-
-  &-entry {
-    padding: variables.$pm-base * 2 variables.$pm-base * 10;
-    border-radius: 4px;
-    border-color: transparent;
-    background-color: variables.$d-blue;
-    border-bottom: variables.$white 1px solid;
-    &::placeholder {
-      color: variables.$white;
-      @include mixin.mobil-text;
-      text-align: center;
-    }
+  @include mixin.form;
+  @include mixin.flexbox(row, center, center);
+  &::placeholder {
+    @include mixin.mobil-text;
   }
+}
 
-  &-btn {
-    background-color: variables.$d-blue;
-    border: none;
-    font-size: 1.25rem;
-  }
+#map {
+  height: 180px;
+  width: 90%;
+  margin-top: variables.$pm-base * 8;
 }

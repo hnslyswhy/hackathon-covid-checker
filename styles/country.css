@@ -27,6 +27,22 @@ body {
   font-weight: 400;
   font-style: normal;
 }
+@-webkit-keyframes spinner {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+@keyframes spinner {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
 .main {
   width: 100%;
   height: 100vh;
@@ -72,6 +88,18 @@ body {
   width: 100%;
 }
 
+.loadingSpinner {
+  margin: 2rem;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  border: 10px dotted #f7f9fb;
+  border-top-color: #c4dbf6;
+  border-bottom-color: #e7e3d4;
+  -webkit-animation: spinner 5s linear 0.25s infinite;
+          animation: spinner 5s linear 0.25s infinite;
+}
+
 .summaryCard {
   background-color: #f7f9fb;
   width: 90%;
@@ -84,6 +112,7 @@ body {
   border-radius: 4px;
   opacity: 0.9;
   box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+  opacity: 1;
   font-family: "Roboto", serif;
   font-weight: 400;
   line-height: 1.2rem;
@@ -112,6 +141,10 @@ body {
 
 .form {
   width: 80%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
 }
 .form-entry {
   padding: 0.5rem 2.5rem;
@@ -122,30 +155,43 @@ body {
 }
 .form-entry::-moz-placeholder {
   color: #f7f9fb;
-  font-family: "Roboto", serif;
-  font-weight: 400;
-  line-height: 1.2rem;
-  font-size: 0.813rem;
   text-align: center;
 }
 .form-entry:-ms-input-placeholder {
   color: #f7f9fb;
-  font-family: "Roboto", serif;
-  font-weight: 400;
-  line-height: 1.2rem;
-  font-size: 0.813rem;
   text-align: center;
 }
 .form-entry::placeholder {
   color: #f7f9fb;
-  font-family: "Roboto", serif;
-  font-weight: 400;
-  line-height: 1.2rem;
-  font-size: 0.813rem;
   text-align: center;
 }
 .form-btn {
   background-color: #3b8beb;
   border: none;
   font-size: 1.25rem;
+  margin-left: 0.25rem;
+}
+.form::-moz-placeholder {
+  font-family: "Roboto", serif;
+  font-weight: 400;
+  line-height: 1.2rem;
+  font-size: 0.813rem;
+}
+.form:-ms-input-placeholder {
+  font-family: "Roboto", serif;
+  font-weight: 400;
+  line-height: 1.2rem;
+  font-size: 0.813rem;
+}
+.form::placeholder {
+  font-family: "Roboto", serif;
+  font-weight: 400;
+  line-height: 1.2rem;
+  font-size: 0.813rem;
+}
+
+#map {
+  height: 180px;
+  width: 90%;
+  margin-top: 2rem;
 }/*# sourceMappingURL=country.css.map */

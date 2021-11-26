@@ -11,21 +11,20 @@ const allCountries = {
 
 let global;
 let countryList;
+const spinner = document.querySelector(".loadingSpinner");
+
 axios
   .request(allCountries)
   .then(function (response) {
     countryList = response.data.slice(2);
-    console.log(countryList);
     global = response.data[0];
-    console.log(global);
     displayGlobal(global);
     formSearch(countryList);
+    spinner.style.display = "none";
   })
   .catch(function (error) {
     console.error(error);
   });
-
-// console.log(countryList);
 
 /*********** display global data  ****************/
 //practice class
@@ -113,6 +112,7 @@ function formSearch(arr) {
       console.log(targetCountry);
       displayCountry(targetCountry);
     }
+    displayOnMap(targetCountry.Country);
   });
 }
 
@@ -142,3 +142,22 @@ function displayCountry(obj) {
   const countryView = document.querySelector(".country");
   countryView.innerHTML = countryData.render();
 }
+
+/////////////
+//use the searching name to get the lon and lat of the country from the object
+//set the lon and lat in the map to get a marker on that country
+
+function displayOnMap(str) {}
+var map = L.map("map").setView([51.505, -0.09], 1);
+
+L.tileLayer("https://{s}.tile.osm.org/{z}/{x}/{y}.png", {
+  attribution:
+    '&copy; <a href="https://osm.org/copyright">OpenStreetMap</a> contributors',
+}).addTo(map);
+
+L.marker([51.5, -0.09])
+  .addTo(map)
+  .bindPopup("A pretty CSS3 popup.<br> Easily customizable.")
+  .openPopup();
+
+console.log(countryLocation);

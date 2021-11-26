@@ -43,12 +43,13 @@
   }
 
   &-title {
+    text-transform: uppercase;
     @include mixin.mobil-subheader;
     color: variables.$d-blue;
     position: absolute;
     bottom: 0;
     right: 0;
-    padding: variables.$pm-base * 2;
+    padding: variables.$pm-base;
   }
 }
 
