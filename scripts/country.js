@@ -18,6 +18,8 @@ axios
   .then(function (response) {
     countryList = response.data.slice(2);
     global = response.data[0];
+  })
+  .then(() => {
     displayGlobal(global);
     formSearch(countryList);
     spinner.style.display = "none";
@@ -109,10 +111,9 @@ function formSearch(arr) {
     );
     e.target.reset();
     if (targetCountry) {
-      console.log(targetCountry);
       displayCountry(targetCountry);
+      getLonLat(targetCountry);
     }
-    displayOnMap(targetCountry.Country);
   });
 }
 
@@ -146,18 +147,24 @@ function displayCountry(obj) {
 /////////////
 //use the searching name to get the lon and lat of the country from the object
 //set the lon and lat in the map to get a marker on that country
+function getLonLat(obj) {
+  let selectedCountry = countryLocation.find(
+    (item) => item.country.toLowerCase() === obj.Country.toLowerCase()
+  );
+  console.log(selectedCountry.latitude, selectedCountry.longitude);
+  displayOnMap(obj, [selectedCountry.latitude, selectedCountry.longitude]);
+}
 
-function displayOnMap(str) {}
-var map = L.map("map").setView([51.505, -0.09], 1);
+var map = L.map("map").setView([60, -0.09], 1.2);
 
 L.tileLayer("https://{s}.tile.osm.org/{z}/{x}/{y}.png", {
-  attribution:
-    '&copy; <a href="https://osm.org/copyright">OpenStreetMap</a> contributors',
+  attribution: "Hackathon- Covid Board by Huanyu & John",
 }).addTo(map);
 
-L.marker([51.5, -0.09])
-  .addTo(map)
-  .bindPopup("A pretty CSS3 popup.<br> Easily customizable.")
-  .openPopup();
-
-console.log(countryLocation);
+function displayOnMap(obj, arr) {
+  console.log(obj);
+  L.marker([arr[0], arr[1]])
+    .addTo(map)
+    .bindPopup(`${obj.Country} New Cases: ${obj.NewCases}`)
+    .openPopup();
+}

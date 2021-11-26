@@ -191,7 +191,8 @@ body {
 }
 
 #map {
-  height: 180px;
+  height: 300px;
   width: 90%;
   margin-top: 2rem;
+  border-radius: 4px;
 }/*# sourceMappingURL=country.css.map */
