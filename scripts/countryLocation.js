@@ -1418,7 +1418,7 @@ const countryLocation = [
     longitude: 25,
   },
   {
-    country: "Russian Federation",
+    country: "Russia",
     alpha2: "RU",
     alpha3: "RUS",
     numeric: 643,

@@ -20,7 +20,13 @@ axios
     global = response.data[0];
   })
   .then(() => {
+    sortFunc(countryList, "Country");
+    sortByName(countryList);
+    sortByCases(countryList);
+  })
+  .then(() => {
     displayGlobal(global);
+    //displayAllCountry(countryList);
     formSearch(countryList);
     spinner.style.display = "none";
   })
@@ -28,6 +34,14 @@ axios
     console.error(error);
   });
 
+// sort data
+function sortFunc(arr, key) {
+  return arr.sort((a, b) => {
+    var x = a[key];
+    var y = b[key];
+    return x < y ? -1 : x > y ? 1 : 0;
+  });
+}
 /*********** display global data  ****************/
 //practice class
 class CountryC {
@@ -99,6 +113,17 @@ function displayGlobal(obj) {
 /************ search by country **************/
 function formSearch(arr) {
   const form = document.querySelector(".form");
+  // add datalist
+  const formInput = document.querySelector(".form-entry");
+  const countryData = document.createElement("datalist");
+  countryData.id = "search-country";
+  formInput.insertAdjacentElement("afterend", countryData);
+  arr.forEach((item) => {
+    const option = document.createElement("option");
+    option.value = item.Country;
+    countryData.append(option);
+  });
+
   let searchTarget;
   let targetCountry;
 
@@ -113,6 +138,8 @@ function formSearch(arr) {
     if (targetCountry) {
       displayCountry(targetCountry);
       getLonLat(targetCountry);
+    } else {
+      displayErrorMessage();
     }
   });
 }
@@ -144,9 +171,22 @@ function displayCountry(obj) {
   countryView.innerHTML = countryData.render();
 }
 
-/////////////
+function displayErrorMessage() {
+  const countrySection = document.querySelector(".country");
+  countrySection.innerHTML =
+    "<p>Results Not Found. <br> Please Check If The Spelling Is Correct <br> Or Try Another Name of This Country</p>";
+  countrySection.classList.add("error");
+  return countrySection;
+}
+
+/************** map ****************/
+//display map
+let map = L.map("map").setView([60, -0.09], 1.2);
+L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+  attribution:
+    '<a href="https://www.maptiler.com/copyright/" target="_blank">&copy; MapTiler</a> <a href="https://www.openstreetmap.org/copyright" target="_blank">&copy; OpenStreetMap contributors</a>',
+}).addTo(map);
 //use the searching name to get the lon and lat of the country from the object
-//set the lon and lat in the map to get a marker on that country
 function getLonLat(obj) {
   let selectedCountry = countryLocation.find(
     (item) => item.country.toLowerCase() === obj.Country.toLowerCase()
@@ -154,17 +194,96 @@ function getLonLat(obj) {
   console.log(selectedCountry.latitude, selectedCountry.longitude);
   displayOnMap(obj, [selectedCountry.latitude, selectedCountry.longitude]);
 }
-
-var map = L.map("map").setView([60, -0.09], 1.2);
-
-L.tileLayer("https://{s}.tile.osm.org/{z}/{x}/{y}.png", {
-  attribution: "Hackathon- Covid Board by Huanyu & John",
-}).addTo(map);
-
+//set the lon and lat in the map to get a marker on that country
 function displayOnMap(obj, arr) {
   console.log(obj);
   L.marker([arr[0], arr[1]])
     .addTo(map)
     .bindPopup(`${obj.Country} New Cases: ${obj.NewCases}`)
     .openPopup();
+}
+/* function onMapClick(e) {
+  alert("You clicked the map at " + e.latlng);
+}
+map.on("click", onMapClick);
+ */
+/************* sorting countryList **************/
+const container = document.querySelector(".rank-container");
+const tableBody = document.querySelector(".rank-body");
+function sortByName(arr) {
+  tableBody.innerHTML = "";
+  const sortNameOrder = document.querySelector(".rank-name");
+  sortNameOrder.addEventListener("click", () => {
+    sortNameOrder.classList.add("rank-name__active");
+    sortFunc(arr, "Country");
+    displayAllCountry(arr);
+  });
+}
+
+function sortByCases(arr) {
+  tableBody.innerHTML = "";
+  const sortDescendOrder = document.querySelector(".rank-most");
+  sortDescendOrder.addEventListener("click", () => {
+    sortDescendOrder.classList.add("rank-case__active");
+    sortFunc(arr, "rank");
+    displayAllCountry(arr);
+  });
+}
+
+class CountryR {
+  constructor(
+    country,
+    rank,
+    active,
+    newCases,
+    newDeaths,
+    totalCases,
+    totalDeaths
+  ) {
+    this.country = country;
+    this.rank = rank;
+    this.active = active;
+    this.newCases = newCases;
+    this.newDeaths = newDeaths;
+    this.totalCases = totalCases;
+    this.totalDeaths = totalDeaths;
+  }
+  render() {
+    return `
+          <td>${this.country}</td>
+              <td>${this.rank}</td>
+              <td>${this.active}</td>
+              <td>${this.newCases}</td>
+              <td>${this.newDeaths}</td>
+              <td>${this.totalCases}</td>
+              <td>${this.totalDeaths}</td>
+    `;
+  }
+}
+
+function displayAllCountry(arr) {
+  arr.forEach((item) => {
+    const {
+      Country,
+      rank,
+      ActiveCases,
+      NewCases,
+      NewDeaths,
+      TotalCases,
+      TotalDeaths,
+    } = item;
+    const itemData = new CountryR(
+      Country,
+      rank,
+      ActiveCases,
+      NewCases,
+      NewDeaths,
+      TotalCases,
+      TotalDeaths
+    );
+    const tableRow = document.createElement("tr");
+    tableRow.classList.add("rank-data");
+    container.append(tableRow);
+    tableRow.innerHTML = itemData.render();
+  });
 }

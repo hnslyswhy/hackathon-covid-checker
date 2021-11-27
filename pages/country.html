@@ -28,6 +28,7 @@
         <section class="global"></section>
         <form class="form">
           <input
+            list="search-country"
             class="form-entry"
             type="text"
             name="country"
@@ -37,6 +38,36 @@
         </form>
         <section class="country"></section>
         <div id="map"></div>
+        <section class="rank">
+          <div class="rank-header">
+            <p class="rank-title">Show All Countries By</p>
+            <div class="rank-sort">
+              <span class="rank-name">Name</span>
+              <span class="rank-most"> Cases</span>
+            </div>
+          </div>
+          <table class="rank-container">
+            <!--        <colgroup>
+              <col style="width: 20%" />
+              <col style="width: 15%" />
+              <col style="width: 15%" />
+              <col style="width: 10%" />
+              <col style="width: 10%" />
+              <col style="width: 15%" />
+              <col style="width: 15%" />
+            </colgroup> -->
+            <tr class="rank-headline">
+              <th>Country</th>
+              <th>Rank</th>
+              <th>Active</th>
+              <th>New Cases</th>
+              <th>New Deaths</th>
+              <th>Total Cases</th>
+              <th>Total Deaths</th>
+            </tr>
+            <tbody class="rank-body"></tbody>
+          </table>
+        </section>
       </div>
     </main>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
