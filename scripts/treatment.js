@@ -1,59 +1,3 @@
-/* const allTreatment = {
-  method: "GET",
-  url: "https://vaccovid-coronavirus-vaccine-and-treatment-tracker.p.rapidapi.com/api/vaccines/get-all-treatment",
-  headers: {
-    "x-rapidapi-host":
-      "vaccovid-coronavirus-vaccine-and-treatment-tracker.p.rapidapi.com",
-    "x-rapidapi-key": "e8c6051701msh19283f80b63e370p1f39d6jsn62d88c9e7aaf",
-  },
-};
-
-axios
-  .request(allTreatment)
-  .then(function (response) {
-    vaccineList = response.data;
-    console.log(vaccineList);
-  })
-  .then(() => {
-    let approvedVaccineList = findFDAApproved(vaccineList);
-    console.log(approvedVaccineList);
-  })
-  .catch(function (error) {
-    console.error(error);
-  });
-
-const allVaccines = {
-  method: "GET",
-  url: "https://vaccovid-coronavirus-vaccine-and-treatment-tracker.p.rapidapi.com/api/vaccines/get-all-vaccines",
-  headers: {
-    "x-rapidapi-host":
-      "vaccovid-coronavirus-vaccine-and-treatment-tracker.p.rapidapi.com",
-    "x-rapidapi-key": "e8c6051701msh19283f80b63e370p1f39d6jsn62d88c9e7aaf",
-  },
-};
-
-let vaccineList;
-axios
-  .request(allVaccines)
-  .then(function (response) {
-    //  console.log(response.data);
-    vaccineList = response.data;
-    console.log(vaccineList);
-  })
-  .then(() => {
-    let approvedVaccineList = findFDAApproved(vaccineList);
-    // console.log(approvedVaccineList);
-  })
-
-  .catch(function (error) {
-    console.error(error);
-  });
-
-function findFDAApproved(arr) {
-  return arr.filter((item) => item.FDAApproved !== "undefined");
-}
- */
-
 const getApprovedVaccine = {
   method: "GET",
   url: "https://vaccovid-coronavirus-vaccine-and-treatment-tracker.p.rapidapi.com/api/vaccines/get-fda-approved-vaccines",
@@ -65,11 +9,13 @@ const getApprovedVaccine = {
 };
 let approvedVList = [];
 let spinner = document.querySelector(".loadingSpinner");
+let container = document.querySelector(".approved-container");
 axios
   .request(getApprovedVaccine)
   .then(function (response) {
     console.log(response.data);
     approvedVList = response.data;
+    container.classList.remove("approved-container__hide");
     approvedVList.forEach((item) => displayApprovedVaccine(item));
     spinner.style.display = "none";
   })
@@ -96,13 +42,13 @@ class Vaccine {
   }
   render() {
     return `
-     <div class="approvedCard">
-          <p class="approvedCard-headline">${this.developerResearcher}</p>
-          <p class="approvedCard-info">Category: <span class="approvedCard-content">${this.category}</span></p>
-          <p class="approvedCard-info">Description: <span class="approvedCard-content">${this.description}</span></p>
-          <p class="approvedCard-info">Phase: <span class="approvedCard-content">${this.phase}</span></p>
-          <p class="approvedCard-info">LastUpdated: <span class="approvedCard-content">${this.lastUpdated}</span></p>
-          <p class="approvedCard-info">NextSteps: <span class="approvedCard-content">${this.nextSteps}</span></p>
+     <div class="approved-card">
+          <p class="approved-card-headline">${this.developerResearcher}</p>
+          <p class="approved-card-info"><span class="approved-card-content">Category:</span> ${this.category}</p>
+          <p class="approved-card-info"><span class="approved-card-content">Description:</span> ${this.description}</p>
+          <p class="approved-card-info"><span class="approved-card-content">Phase:</span> ${this.phase}</p>
+          <p class="approved-card-info"><span class="approved-card-content">LastUpdated:</span> ${this.lastUpdated}</p>
+          <p class="approved-card-info"><span class="approved-card-content">NextSteps:</span> ${this.nextSteps}</p>
         </div>
     `;
   }
@@ -125,6 +71,6 @@ function displayApprovedVaccine(obj) {
     nextSteps,
     phase
   );
-  const approvedSection = document.querySelector(".approved");
+  const approvedSection = document.querySelector(".approved-container");
   approvedSection.innerHTML += approvedData.render();
 }

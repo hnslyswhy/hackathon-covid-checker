@@ -26,21 +26,23 @@
         <h1 class="container-title">Case Summary</h1>
         <div class="loadingSpinner"></div>
         <section class="global"></section>
-        <form class="form">
-          <input
-            list="search-country"
-            class="form-entry"
-            type="text"
-            name="country"
-            placeholder="country name"
-          />
-          <button class="form-btn" type="submit">🔍</button>
-        </form>
-        <section class="country"></section>
-        <div id="map"></div>
+        <section class="mapSection">
+          <form class="form">
+            <input
+              list="search-country"
+              class="form-entry"
+              type="text"
+              name="country"
+              placeholder="Country Name"
+            />
+            <button class="form-btn" type="submit">🔍</button>
+          </form>
+          <section class="country"></section>
+          <div id="map"></div>
+        </section>
         <section class="rank">
           <div class="rank-header">
-            <p class="rank-title">Show All Countries By</p>
+            <p class="rank-title">Show All By</p>
             <div class="rank-sort">
               <span class="rank-name">Name</span>
               <span class="rank-most"> Cases</span>
@@ -52,10 +54,10 @@
                 <th>Country</th>
                 <th>Rank</th>
                 <th>Active</th>
-                <th>New Cases</th>
-                <th>New Deaths</th>
+                <th class="rank-headline__hide">New Cases</th>
+                <th class="rank-headline__hide">New Deaths</th>
                 <th>Total Cases</th>
-                <th>Total Deaths</th>
+                <th class="rank-headline__hide">Total Deaths</th>
               </tr>
             </thead>
             <tbody class="rank-body"></tbody>

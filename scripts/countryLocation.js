@@ -898,7 +898,7 @@ const countryLocation = [
     longitude: 127,
   },
   {
-    country: "S. korea, Republic of",
+    country: "S. korea",
     alpha2: "KR",
     alpha3: "KOR",
     numeric: 410,
@@ -922,7 +922,7 @@ const countryLocation = [
     longitude: 75,
   },
   {
-    country: "Lao People's Democratic Republic",
+    country: "Laos",
     alpha2: "LA",
     alpha3: "LAO",
     numeric: 418,
@@ -1866,7 +1866,7 @@ const countryLocation = [
     longitude: 106,
   },
   {
-    country: "Virgin Islands, British",
+    country: "British Virgin Islands",
     alpha2: "VG",
     alpha3: "VGB",
     numeric: 92,

@@ -7,35 +7,60 @@
   height: 100vh;
   overflow: scroll;
   background-color: variables.$d-blue;
-  padding: variables.$pm-base * 4 0;
+  padding-top: variables.$pm-base * 4;
+
+  @include mixin.tablet {
+    padding-top: variables.$pm-base * 8;
+  }
 }
 
 .backBtn {
   @include mixin.backBtn;
   @include mixin.mobil-subheader;
   color: variables.$white;
-  margin-top: variables.$pm-base * 6; //// ? not working
+
+  @include mixin.tablet {
+    @include mixin.subheader;
+    margin-left: variables.$pm-base * 6;
+  }
 }
 
 .container {
   width: 100%;
   @include mixin.flexbox(column, center, center);
-  padding: variables.$pm-base * 4;
+  padding-top: variables.$pm-base * 4;
 }
 
 .intro {
   width: 100%;
+  padding: variables.$pm-base * 8 variables.$pm-base * 4;
+  padding-bottom: 0;
   @include mixin.flexbox(column, center, center);
+
+  @include mixin.tablet {
+    padding: variables.$pm-base * 12 variables.$pm-base * 8;
+  }
 
   &-title {
     @include mixin.mobil-header;
     color: variables.$white;
+
+    @include mixin.tablet {
+      @include mixin.header;
+    }
   }
 
   &-text {
     @include mixin.mobil-text;
     color: variables.$white;
     margin-top: variables.$pm-base * 4;
+
+    @include mixin.tablet {
+      width: 60%;
+      min-width: 700px;
+      @include mixin.text;
+      line-height: 1.8rem;
+    }
   }
 
   &-link {
@@ -45,23 +70,94 @@
   }
 }
 
-.loadingSpinner {
-  @include mixin.loadingSpinner;
-}
-
 .approved {
   width: 100%;
+  padding: variables.$pm-base * 8 variables.$pm-base * 4;
+
+  @include mixin.tablet {
+    padding: variables.$pm-base * 12;
+    padding-top: variables.$pm-base * 4;
+  }
+
+  .loadingSpinner {
+    @include mixin.loadingSpinner;
+  }
 
   &-title {
     @include mixin.mobil-header;
     color: variables.$white;
+    text-align: center;
+    margin-bottom: variables.$pm-base * 8;
+
+    @include mixin.tablet {
+      @include mixin.header;
+    }
+  }
+
+  &-container {
+    @include mixin.card;
+    width: 100%;
+
+    &__hide {
+      display: none;
+    }
+
+    @include mixin.tablet {
+      @include mixin.flexbox(row, center, center);
+      flex-wrap: wrap;
+    }
+  }
+
+  &-card {
+    padding: variables.$pm-base * 2;
+    @include mixin.mobil-text;
+    color: variables.$d-gray;
+    text-align: center;
+
+    @include mixin.tablet {
+      width: 33.33%;
+      padding: variables.$pm-base * 4 variables.$pm-base * 2;
+    }
+
+    &-content {
+      font-weight: 600;
+    }
+
+    &-headline {
+      font-weight: 600;
+      color: variables.$d-blue;
+    }
+
+    &:nth-of-type(2n) {
+      background-color: variables.$l-gray;
+    }
+
+    &:hover,
+    &:active {
+      background-color: variables.$l-blue;
+    }
   }
 }
 
 .form {
   @include mixin.form;
+  width: 100%;
+  padding: variables.$pm-base * 12;
+  background-color: variables.$white;
+  margin-bottom: 0;
   @include mixin.flexbox(row, center, center);
+
   &::placeholder {
     @include mixin.mobil-text;
+
+    @include mixin.tablet {
+      @include mixin.text;
+    }
+  }
+
+  &-btn {
+    @include mixin.tablet {
+      font-size: 1.5rem;
+    }
   }
 }

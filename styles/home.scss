@@ -5,13 +5,26 @@
 .main {
   width: 100%;
   background-color: variables.$d-blue;
+  padding-top: variables.$pm-base * 4;
+  padding-bottom: variables.$pm-base * 12;
   @include mixin.flexbox(column, center, center);
+
+  @include mixin.tablet {
+    padding-top: variables.$pm-base * 12;
+    padding-bottom: variables.$pm-base * 16;
+  }
 
   &-headline {
     @include mixin.mobil-header;
     color: variables.$white;
     margin-top: variables.$pm-base * 6;
     margin-bottom: variables.$pm-base * 2;
+
+    @include mixin.tablet {
+      @include mixin.header;
+      margin-top: variables.$pm-base * 12;
+      margin-bottom: variables.$pm-base * 16;
+    }
   }
 
   &-content {
@@ -21,12 +34,25 @@
 }
 
 .card {
-  width: 100%;
+  width: 90%;
   @include mixin.flexbox(column, center, center);
+
+  @include mixin.tablet {
+    @include mixin.flexbox(row, space-between, center);
+  }
 
   &-container {
     @include mixin.card;
+    width: 100%;
+    margin: variables.$pm-base * 4 0;
     position: relative;
+
+    @include mixin.tablet {
+      width: 45%;
+      height: 60%;
+      min-height: 320px;
+    }
+
     &:hover,
     &:active {
       cursor: pointer;
@@ -50,6 +76,11 @@
     bottom: 0;
     right: 0;
     padding: variables.$pm-base;
+
+    @include mixin.tablet {
+      @include mixin.subheader;
+      padding: variables.$pm-base * 2;
+    }
   }
 }
 
@@ -57,15 +88,31 @@
   width: 100%;
   @include mixin.flexbox(column, center, center);
 
+  @include mixin.tablet {
+    margin: variables.$pm-base * 16;
+    margin-bottom: variables.$pm-base * 8;
+  }
+
   &-headline {
     @include mixin.mobil-header;
     color: variables.$white;
     margin-top: variables.$pm-base * 4;
+
+    @include mixin.tablet {
+      @include mixin.header;
+      margin: variables.$pm-base * 8 0;
+    }
   }
 
   &-collection {
     @include mixin.card;
     opacity: 1;
+
+    @include mixin.tablet {
+      @include mixin.flexbox(row, flex-start, center);
+      flex-wrap: wrap;
+      margin: variables.$pm-base * 8 0;
+    }
   }
 
   &-card {
@@ -75,6 +122,18 @@
     border-bottom: 1px solid variables.$l-gray;
     @include mixin.mobil-text;
     color: variables.$d-gray;
+
+    @include mixin.tablet {
+      @include mixin.flexbox(column, flex-start, space-between);
+      @include mixin.text;
+      width: 33.333%;
+      height: 10vw;
+      min-height: 150px;
+      max-height: 250px;
+      border-bottom: 1px dotted variables.$l-gray;
+      border-right: 1px dotted variables.$l-gray;
+    }
+
     &:hover,
     &:active {
       cursor: pointer;
@@ -85,16 +144,9 @@
   &-icon {
     font-size: 1.25rem;
     margin-right: variables.$pm-base * 2;
-  }
-
-  &-title {
+    @include mixin.tablet {
+      margin: variables.$pm-base * 2 0;
+      font-size: 1.5rem;
+    }
   }
 }
-
-/* <a class="news-card" href="">
-  <div>
-    <img src="${news.urlToImage}" alt="" />
-  </div>
-  <h3 class="news-title">${news.title}</h3>
-  <p class="news-date">${news.date}</p>
-</a>; */

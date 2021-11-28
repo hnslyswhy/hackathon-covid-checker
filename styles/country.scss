@@ -8,13 +8,21 @@
   overflow: scroll;
   background-color: variables.$d-blue;
   padding: variables.$pm-base * 4 0;
+
+  @include mixin.tablet {
+    padding: variables.$pm-base * 8 0;
+  }
 }
 
 .backBtn {
   @include mixin.backBtn;
   @include mixin.mobil-subheader;
   color: variables.$white;
-  margin-top: variables.$pm-base * 6; //// ? not working
+
+  @include mixin.tablet {
+    @include mixin.subheader;
+    margin-left: variables.$pm-base * 6;
+  }
 }
 
 .container {
@@ -25,12 +33,27 @@
     @include mixin.mobil-header;
     color: variables.$white;
     margin-top: variables.$pm-base * 4;
+
+    @include mixin.tablet {
+      @include mixin.header;
+    }
   }
 }
 
 .global,
 .country {
   width: 100%;
+  padding: variables.$pm-base * 12 0;
+  padding-bottom: variables.$pm-base * 16;
+
+  @include mixin.tablet {
+    padding: variables.$pm-base * 16 0;
+    padding-bottom: variables.$pm-base * 24;
+  }
+}
+
+.country {
+  display: none;
 }
 
 .loadingSpinner {
@@ -44,16 +67,33 @@
   color: variables.$d-gray;
   padding-top: variables.$pm-base * 4;
 
+  @include mixin.tablet {
+    @include mixin.text;
+    width: 70%;
+    max-width: 600px;
+  }
+
   &-headline {
     @include mixin.mobil-subheader;
     text-align: center;
+
+    @include mixin.tablet {
+      @include mixin.subheader;
+    }
   }
+
   &-info {
     padding: variables.$pm-base variables.$pm-base * 4;
+
     &:nth-of-type(2n) {
       background-color: variables.$l-gray;
     }
+
+    @include mixin.tablet {
+      padding: variables.$pm-base * 2 variables.$pm-base * 6;
+    }
   }
+
   &-mun {
     padding-left: variables.$pm-base;
     font-weight: 500;
@@ -63,16 +103,46 @@
 .form {
   @include mixin.form;
   @include mixin.flexbox(row, center, center);
+
   &::placeholder {
     @include mixin.mobil-text;
+
+    @include mixin.tablet {
+      @include mixin.text;
+    }
+  }
+
+  &-btn {
+    @include mixin.tablet {
+      font-size: 1.5rem;
+    }
   }
 }
 
-#map {
-  height: 300px;
-  width: 90%;
-  margin-top: variables.$pm-base * 8;
-  border-radius: 4px;
+.mapSection {
+  width: 100%;
+  background-color: variables.$white;
+  padding: variables.$pm-base * 12 0;
+  @include mixin.flexbox(column, center, center);
+
+  @include mixin.tablet {
+    padding: variables.$pm-base * 16 0;
+  }
+
+  #map {
+    height: 300px;
+    width: 90%;
+    margin: variables.$pm-base * 4 auto;
+    border-radius: 4px;
+
+    @include mixin.tablet {
+      width: 70%;
+      height: 400px;
+      max-width: 600px;
+      margin: variables.$pm-base * 8 auto;
+      height: 300px;
+    }
+  }
 }
 
 .error {
@@ -84,23 +154,36 @@
 
 .rank {
   width: 90%;
+  padding: variables.$pm-base * 12 0;
+
+  @include mixin.tablet {
+    padding: variables.$pm-base * 16 0;
+  }
 
   &-header {
     @include mixin.flexbox(column, center, center);
-    margin: variables.$pm-base * 8;
+    margin: variables.$pm-base * 4;
   }
 
   &-title {
     @include mixin.mobil-header;
     color: variables.$white;
+    margin-bottom: variables.$pm-base * 4;
+
+    @include mixin.tablet {
+      @include mixin.header;
+    }
   }
 
   &-most,
   &-name {
     @include mixin.mobil-subheader;
     color: variables.$white;
-    padding: variables.$pm-base * 4;
-    margin: 0 variables.$pm-base * 4;
+    margin: variables.$pm-base * 4;
+
+    @include mixin.tablet {
+      @include mixin.subheader;
+    }
 
     &:hover,
     &:active {
@@ -120,12 +203,25 @@
     table-layout: fixed;
     padding: variables.$pm-base * 4;
     opacity: 1;
+    display: none;
   }
 
   &-headline {
     @include mixin.mobil-text;
     color: variables.$d-gray;
     margin: variables.$pm-base * 2 0;
+
+    @include mixin.tablet {
+      @include mixin.text;
+    }
+
+    &__hide {
+      display: none;
+
+      @include mixin.tablet {
+        display: table-cell;
+      }
+    }
   }
 
   &-data {

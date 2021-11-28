@@ -136,6 +136,8 @@ function formSearch(arr) {
     );
     e.target.reset();
     if (targetCountry) {
+      const countrySection = document.querySelector(".country");
+      countrySection.style.display = "block";
       displayCountry(targetCountry);
       getLonLat(targetCountry);
     } else {
@@ -191,7 +193,6 @@ function getLonLat(obj) {
   let selectedCountry = countryLocation.find(
     (item) => item.country.toLowerCase() === obj.Country.toLowerCase()
   );
-  console.log(selectedCountry.latitude, selectedCountry.longitude);
   displayOnMap(obj, [selectedCountry.latitude, selectedCountry.longitude]);
 }
 //set the lon and lat in the map to get a marker on that country
@@ -210,10 +211,15 @@ map.on("click", onMapClick);
 /************* sorting countryList **************/
 const container = document.querySelector(".rank-container");
 const tableBody = document.querySelector(".rank-body");
+const sortDescendOrder = document.querySelector(".rank-most");
+const sortNameOrder = document.querySelector(".rank-name");
+
 function sortByName(arr) {
-  tableBody.innerHTML = "";
-  const sortNameOrder = document.querySelector(".rank-name");
   sortNameOrder.addEventListener("click", () => {
+    container.style.display = "table";
+    const tableBody = document.querySelector(".rank-body");
+    tableBody.innerHTML = "";
+    sortDescendOrder.classList.remove("rank-most__active");
     sortNameOrder.classList.add("rank-name__active");
     sortFunc(arr, "Country");
     displayAllCountry(arr);
@@ -221,10 +227,12 @@ function sortByName(arr) {
 }
 
 function sortByCases(arr) {
-  tableBody.innerHTML = "";
-  const sortDescendOrder = document.querySelector(".rank-most");
   sortDescendOrder.addEventListener("click", () => {
-    sortDescendOrder.classList.add("rank-case__active");
+    container.style.display = "table";
+    const tableBody = document.querySelector(".rank-body");
+    tableBody.innerHTML = "";
+    sortNameOrder.classList.remove("rank-name__active");
+    sortDescendOrder.classList.add("rank-most__active");
     sortFunc(arr, "rank");
     displayAllCountry(arr);
   });
@@ -253,10 +261,10 @@ class CountryR {
           <td>${this.country}</td>
               <td>${this.rank}</td>
               <td>${this.active}</td>
-              <td>${this.newCases}</td>
-              <td>${this.newDeaths}</td>
+              <td  class="rank-headline__hide">${this.newCases}</td>
+              <td  class="rank-headline__hide">${this.newDeaths}</td>
               <td>${this.totalCases}</td>
-              <td>${this.totalDeaths}</td>
+              <td  class="rank-headline__hide">${this.totalDeaths}</td>
     `;
   }
 }
@@ -283,7 +291,7 @@ function displayAllCountry(arr) {
     );
     const tableRow = document.createElement("tr");
     tableRow.classList.add("rank-data");
-    container.append(tableRow);
+    tableBody.append(tableRow);
     tableRow.innerHTML = itemData.render();
   });
 }

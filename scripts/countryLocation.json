@@ -385,7 +385,7 @@
       "longitude": -84
     },
     {
-      "country": "Côte d'Ivoire",
+      "country": "Ivory Coast",
       "alpha2": "CI",
       "alpha3": "CIV",
       "numeric": 384,
@@ -881,7 +881,7 @@
       "longitude": 173
     },
     {
-      "country": "S. korea, Democratic People's Republic of",
+      "country": "North korea",
       "alpha2": "KP",
       "alpha3": "PRK",
       "numeric": 408,
@@ -889,7 +889,7 @@
       "longitude": 127
     },
     {
-      "country": "S. korea, Republic of",
+      "country": "S. Korea",
       "alpha2": "KR",
       "alpha3": "KOR",
       "numeric": 410,
@@ -913,7 +913,7 @@
       "longitude": 75
     },
     {
-      "country": "Lao People's Democratic Republic",
+      "country": "Laos",
       "alpha2": "LA",
       "alpha3": "LAO",
       "numeric": 418,
@@ -1753,7 +1753,7 @@
       "longitude": 60
     },
     {
-      "country": "Turks and Caicos Islands",
+      "country": "Turks and Caicos",
       "alpha2": "TC",
       "alpha3": "TCA",
       "numeric": 796,
@@ -1857,7 +1857,7 @@
       "longitude": 106
     },
     {
-      "country": "Virgin Islands, British",
+      "country": "British Virgin Islands",
       "alpha2": "VG",
       "alpha3": "VGB",
       "numeric": 92,
