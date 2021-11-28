@@ -320,10 +320,6 @@ body {
   line-height: 1.2rem;
   font-size: 0.813rem;
   color: #8590aa;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
   margin: 0.5rem 0;
 }
 .rank-data {

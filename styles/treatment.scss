@@ -45,6 +45,19 @@
   }
 }
 
+.loadingSpinner {
+  @include mixin.loadingSpinner;
+}
+
+.approved {
+  width: 100%;
+
+  &-title {
+    @include mixin.mobil-header;
+    color: variables.$white;
+  }
+}
+
 .form {
   @include mixin.form;
   @include mixin.flexbox(row, center, center);

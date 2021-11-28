@@ -125,7 +125,6 @@
   &-headline {
     @include mixin.mobil-text;
     color: variables.$d-gray;
-    @include mixin.flexbox(row, space-between, center);
     margin: variables.$pm-base * 2 0;
   }
 
